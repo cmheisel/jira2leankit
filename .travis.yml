@@ -1,0 +1,18 @@
+env:
+  global:
+    - REPO="cmheisel/jira2leankit"
+    - CI_HOME=`pwd`/$REPO
+    - SDISTS=file://$CI_HOME/sdists/
+language: python
+python:
+  - "2.7"
+before_install:
+  #- pip install -q -r requirements.txt --no-index --no-deps --find-links $SDISTS
+  - pip install . --use-mirrors
+  - pip install -r requirements.txt --use-mirrors
+# command to install dependencies
+install:
+services:
+
+# command to run tests
+script: py.test --pep8
