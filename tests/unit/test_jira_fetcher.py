@@ -10,4 +10,4 @@ class JIRAFetcherTests(TestCase):
 
     def test_truth(self):
         """Sanity check"""
-        assert False
+        assert True
