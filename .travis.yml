@@ -6,15 +6,13 @@ env:
 language: python
 python:
   - "2.7"
-before_install:
+install:
   #- pip install -q -r requirements.txt --no-index --no-deps --find-links $SDISTS
   - pip install .
   - pip install -r requirements.txt
-# command to install dependencies
-install:
 services:
 
 # command to run tests
 script:
   - flake8 --max-complexity 10 jira2leankit tests
-  - py.test -q --pep8 
+  - py.test -q --pep8
