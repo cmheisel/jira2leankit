@@ -15,4 +15,6 @@ install:
 services:
 
 # command to run tests
-script: py.test --pep8
+script:
+  - flake8 --max-complexity 10 jira2leankit tests
+  - py.test --pep8
