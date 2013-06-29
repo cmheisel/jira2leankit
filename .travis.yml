@@ -8,8 +8,8 @@ python:
   - "2.7"
 before_install:
   #- pip install -q -r requirements.txt --no-index --no-deps --find-links $SDISTS
-  - pip install . --use-mirrors
-  - pip install -r requirements.txt --use-mirrors
+  - pip install .
+  - pip install -r requirements.txt
 # command to install dependencies
 install:
 services:
@@ -17,4 +17,4 @@ services:
 # command to run tests
 script:
   - flake8 --max-complexity 10 jira2leankit tests
-  - py.test --pep8
+  - py.test -q --pep8 
