@@ -7,4 +7,6 @@ import unittest2
 
 class TestCase(unittest2.TestCase):
     """Base class for unit tests."""
-    pass
+
+    def _get_target_class(self):
+        pass
