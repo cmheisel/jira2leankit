@@ -1,6 +1,7 @@
 """
 JIRAFetcher tests
 """
+import pytest
 
 from core import TestCase
 from mockito import when, mock
@@ -38,3 +39,18 @@ class JIRAFetcherTests(TestCase):
 
         ticket = jf.fetch("CMSPD-494")
         assert ticket['key'] == "CMSPD-494"
+
+    # TODO: Test sad path
+    def test_fetch_raises_exception_for_nonextant_tickets(self):
+        """
+        The fetch method should raise an exception if the card doesn't
+        exist in JIRA
+        """
+        from jira2leankit.jira.fetcher import DoesNotExist
+        from requests.exceptions import ConnectionError
+
+        jf = self._make_one()
+        when(self.mockJIRAService).issue("CMSNO-1").thenRaise(ConnectionError)
+
+        with pytest.raises(DoesNotExist):
+            jf.fetch("CMSNO-1")

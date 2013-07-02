@@ -1,6 +1,11 @@
 """
 Fetcher classes and methods to get data out of JIRA
 """
+from requests.exceptions import ConnectionError
+
+
+class DoesNotExist(Exception):
+    pass
 
 
 class JIRAFetcher(object):
@@ -19,5 +24,9 @@ class JIRAFetcher(object):
         return JIRA(options=options, basic_auth=auth)
 
     def fetch(self, key):
-        issue = self._service.issue(key)
+        try:
+            issue = self._service.issue(key)
+        except ConnectionError:
+            raise DoesNotExist
+
         return {'key': issue.key}
