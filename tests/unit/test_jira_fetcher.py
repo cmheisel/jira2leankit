@@ -40,8 +40,7 @@ class JIRAFetcherTests(TestCase):
         ticket = jf.fetch("CMSPD-494")
         assert ticket['key'] == "CMSPD-494"
 
-    # TODO: Test sad path
-    def test_fetch_raises_exception_for_nonextant_tickets(self):
+    def test_fetch_raises_exception_for_missing_tickets(self):
         """
         The fetch method should raise an exception if the card doesn't
         exist in JIRA
